@@ -1,19 +1,15 @@
 import {action, observable, extendObservable} from 'mobx'
 
 class AppState {
-  @observable name = 'lac'
-  @observable count = 5
+  @observable name = ''
+  @observable pwd = ''
 
-  addCount () {
-    this.count += 1
+  changeName (name) {
+    this.name = name
   }
 
-  minCount () {
-    this.count -= 1
-  }
-
-  resetCount () {
-    this.count = 5
+  changePwd (pwd) {
+    this.pwd = pwd
   }
 }
 

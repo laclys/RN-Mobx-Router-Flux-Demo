@@ -1,37 +1,21 @@
 import React, { Component } from 'react'
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native'
-import {observer} from 'mobx-react'
-import AppState from './store/AppState'
 
-@observer
-export default class App extends Component<{}> {
+import Login from './components/Login'
+import Show from './components/Show'
+import Change from './components/Change'
+
+import {Scene, Router, Actions} from 'react-native-router-flux'
+
+const scenes = Actions.create(
+  <Scene key='root'>
+    <Scene key='login' component={Login} initial hideNavBar />
+    <Scene key='change' component={Change} title='Change' navTransparent />
+    <Scene key='show' component={Show} title='Show' hideNavBar />
+  </Scene>
+)
+
+export default class App extends Component {
   render () {
-    return (
-      <View style={styles.container}>
-        <Text>{AppState.count}</Text>
-        <Button
-          onPress={() => AppState.addCount()}
-          title='+'
-        />
-        <Button
-          onPress={() => AppState.resetCount()}
-          title='reset'
-        />
-      </View>
-    )
+    return <Router scenes={scenes} />
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  }
-})
